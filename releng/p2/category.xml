@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/mil.jpeojtrs.sca.feature_2.2.2.qualifier.jar" id="mil.jpeojtrs.sca.feature" version="2.2.2.qualifier">
-      <category name="mil.jpeojtrs.sca"/>
+   <feature url="features/org.jacorb_3.1.0.qualifier.jar" id="org.jacorb" version="3.1.0.qualifier">
+      <category name="org.jacorb"/>
    </feature>
-   <feature url="features/mil.jpeojtrs.sca.sdk_2.2.2.qualifier.jar" id="mil.jpeojtrs.sca.sdk" version="2.2.2.qualifier">
-      <category name="mil.jpeojtrs.sca"/>
-   </feature>
-   <category-def name="mil.jpeojtrs.sca" label="SCA"/>
+   <category-def name="org.jacorb" label="JacORB"/>
 </site>
