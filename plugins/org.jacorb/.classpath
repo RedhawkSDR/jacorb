@@ -7,7 +7,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/slf4j-api-1.6.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/slf4j-jdk14-1.6.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/idl.jar" sourcepath="lib/jacorb-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jacorb-services.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jacorb-services.jar" sourcepath="lib/jacorb-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jacorb.jar" sourcepath="lib/jacorb-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
