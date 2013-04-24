@@ -1,19 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: JaCORB
+Bundle-Name: JacORB
 Bundle-SymbolicName: org.jacorb
 Bundle-Version: 3.1.0.qualifier
-Bundle-ClassPath: lib/jacorb-services.jar,
- lib/jacorb-sources.jar,
- lib/jacorb.jar,
- lib/slf4j-api-1.6.4.jar,
- lib/slf4j-jdk14-1.6.4.jar
 Export-Package: org.jacorb.collection,
  org.jacorb.collection.util,
  org.jacorb.concurrency,
  org.jacorb.config,
  org.jacorb.dds,
  org.jacorb.events,
+ org.jacorb.idl,
+ org.jacorb.idl.javamapping,
+ org.jacorb.idl.runtime,
+ org.jacorb.idl.util,
  org.jacorb.imr,
  org.jacorb.imr.AdminPackage,
  org.jacorb.imr.RegistrationPackage,
@@ -34,6 +33,7 @@ Export-Package: org.jacorb.collection,
  org.jacorb.notification.filter.impl,
  org.jacorb.notification.impl,
  org.jacorb.notification.interfaces,
+ org.jacorb.notification.jmx,
  org.jacorb.notification.lifecycle,
  org.jacorb.notification.queue,
  org.jacorb.notification.servant,
@@ -162,3 +162,11 @@ Export-Package: org.jacorb.collection,
  org.omg.TimeBase,
  org.omg.dds
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/antlr-2.7.2.jar,
+ lib/picocontainer-1.2.jar,
+ lib/slf4j-api-1.6.4.jar,
+ lib/slf4j-jdk14-1.6.4.jar,
+ lib/idl.jar,
+ lib/jacorb-services.jar,
+ lib/jacorb.jar
+Require-Bundle: system.bundle

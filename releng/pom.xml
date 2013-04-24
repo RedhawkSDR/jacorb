@@ -28,7 +28,6 @@
     <modules>
         <module>../features/org.jacorb.feature</module>
         <module>../plugins/org.jacorb</module>
-        <module>../plugins/org.jacorb.idl</module>
         <module>../plugins/org.jacorb.systemFragment</module>
        <module>p2</module>
     </modules>
