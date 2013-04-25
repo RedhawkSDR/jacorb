@@ -32,12 +32,14 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"/>
+         fragment="true"
+         unpack="true"/>
 
    <plugin
          id="org.jacorb"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="true"/>
 
 </feature>
