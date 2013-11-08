@@ -9,14 +9,14 @@
     <version>3.3.0</version>
   </parent>
 
-  <artifactId>org.jacorb</artifactId>
+  <artifactId>org.jacorb.idl.compiler</artifactId>
   <version>3.3.0</version>
   <packaging>bundle</packaging>
 
   <dependencies>
     <dependency>
       <groupId>org.jacorb</groupId>
-      <artifactId>jacorb</artifactId>
+      <artifactId>jacorb-idl-compiler</artifactId>
     </dependency>
   </dependencies>
 
@@ -29,14 +29,14 @@
         <configuration>
           <instructions>
             <Embed-Dependency>
-              jacorb
+              jacorb-idl-compiler
             </Embed-Dependency>
             <_exportcontents>
               org.*;version="${jacorb-version}.0"
             </_exportcontents>
-            <Import-Package>!sun.*,!javax.*,!org.omg.*,!antlr.*,!org.jacorb.*,!org.tanukisoftware.wrapper.*,*</Import-Package>
+            <Import-Package>!sun.*,!javax.*,!antlr.*,!org.tanukisoftware.wrapper.*,*</Import-Package>
             <Bundle-Version>${pom.version}.${maven.build.timestamp}</Bundle-Version>
-            <Bundle-SymbolicName>org.jacorb</Bundle-SymbolicName>
+            <Bundle-SymbolicName>org.jacorb.idl.compiler</Bundle-SymbolicName>
             <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath>
             <Embed-Transitive>true</Embed-Transitive>
             <Embed-Directory>jars</Embed-Directory>
