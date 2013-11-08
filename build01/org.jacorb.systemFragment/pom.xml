@@ -28,13 +28,11 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Embed-Dependency>
-              jacorb
-            </Embed-Dependency>
+            <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
             <_exportcontents>
-              org.*;version="${jacorb-version}.0"
+              !org.slf4j.*,org.*;version="${jacorb-version}.0"
             </_exportcontents>
-            <Import-Package>!sun.*,*</Import-Package>
+            <Import-Package></Import-Package>
             <Bundle-SymbolicName>org.jacorb.systemFragment</Bundle-SymbolicName>
             <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath>
             <Embed-Transitive>true</Embed-Transitive>
