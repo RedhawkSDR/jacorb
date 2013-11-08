@@ -39,6 +39,7 @@
               org.*;version="${jacorb-version}.0"
             </_exportcontents>
             <Import-Package>!sun.*,!javax.*,!org.omg.*,!antlr.*,!org.jacorb.*,!org.tanukisoftware.wrapper.*,*</Import-Package>
+            <Bundle-Version>${pom.version}.${maven.build.timestamp}</Bundle-Version>
             <Bundle-SymbolicName>org.jacorb</Bundle-SymbolicName>
             <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath>
             <Embed-Transitive>true</Embed-Transitive>
