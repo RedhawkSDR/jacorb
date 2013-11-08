@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/org.jacorb_3.1.0.qualifier.jar" id="org.jacorb" version="3.1.0.qualifier">
-      <category name="org.jacorb"/>
-   </feature>
-   <category-def name="org.jacorb" label="JacORB"/>
-</site>
