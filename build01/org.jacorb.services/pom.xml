@@ -34,6 +34,7 @@
             <_exportcontents>
               org.*;version="${jacorb-version}.0"
             </_exportcontents>
+            <Eclipse-BundleShape>dir</Eclipse-BundleShape>
             <Import-Package>!org.picocontainer.*,!antlr.*,!org.tanukisoftware.wrapper.*,*</Import-Package>
             <Bundle-Version>${project.version}.${maven.build.timestamp}</Bundle-Version>
             <Bundle-SymbolicName>org.jacorb.services</Bundle-SymbolicName>

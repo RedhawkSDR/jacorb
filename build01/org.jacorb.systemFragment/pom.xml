@@ -33,6 +33,7 @@
               !org.slf4j.*,org.*;version="${jacorb-version}.0"
             </_exportcontents>
             <Import-Package></Import-Package>
+            <Eclipse-BundleShape>dir</Eclipse-BundleShape> 
             <Bundle-Version>${project.version}.${maven.build.timestamp}</Bundle-Version>
             <Bundle-SymbolicName>org.jacorb.systemFragment</Bundle-SymbolicName>
             <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath>
