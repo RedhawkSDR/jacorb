@@ -34,7 +34,7 @@
             <_exportcontents>
               org.*;version="${jacorb-version}.0"
             </_exportcontents>
-            <Import-Package>!antlr.*,!org.tanukisoftware.wrapper.*,*</Import-Package>
+            <Import-Package>!org.picocontainer.*,!antlr.*,!org.tanukisoftware.wrapper.*,*</Import-Package>
             <Bundle-Version>${project.version}.${maven.build.timestamp}</Bundle-Version>
             <Bundle-SymbolicName>org.jacorb.services</Bundle-SymbolicName>
             <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath>
