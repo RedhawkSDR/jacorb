@@ -24,6 +24,11 @@
         <artifactId>jacorb</artifactId>
         <version>${jacorb-version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.jacorb</groupId>
+        <artifactId>jacorb-services</artifactId>
+        <version>${jacorb-version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
