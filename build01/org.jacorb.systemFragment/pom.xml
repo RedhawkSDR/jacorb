@@ -18,10 +18,6 @@
       <groupId>org.jacorb</groupId>
       <artifactId>jacorb</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.jacorb</groupId>
-      <artifactId>jacorb-services</artifactId>
-    </dependency>
   </dependencies>
 
   <build>
@@ -37,7 +33,7 @@
               !org.slf4j.*,org.*;version="${jacorb-version}.0"
             </_exportcontents>
             <Import-Package></Import-Package>
-            <Bundle-Version>${pom.version}.${maven.build.timestamp}</Bundle-Version>
+            <Bundle-Version>${project.version}.${maven.build.timestamp}</Bundle-Version>
             <Bundle-SymbolicName>org.jacorb.systemFragment</Bundle-SymbolicName>
             <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath>
             <Embed-Transitive>true</Embed-Transitive>
