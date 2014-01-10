@@ -44,6 +44,7 @@
 
   <modules>
     <module>../features/org.jacorb.feature</module>
+    <module>../plugins/org.jacorb.eclipse</module>
     <module>p2</module>
   </modules>
 
