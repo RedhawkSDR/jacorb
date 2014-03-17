@@ -71,13 +71,10 @@ public class JacorbEclipseActivator extends Plugin {
 				URL fileUrl;
 				try {
 					fileUrl = FileLocator.toFileURL(propUrl);
-					File file = new File(fileUrl.toURI());
+					String fileName = fileUrl.getFile();
+					File file = new File(fileName);
 					System.setProperty("jacorb.config.dir", file.getParentFile().getAbsolutePath());
 				} catch (IOException e) {
-					getLog().log(
-						new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
-							"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", e));
-				} catch (URISyntaxException e) {
 					getLog().log(
 						new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
 							"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", e));
