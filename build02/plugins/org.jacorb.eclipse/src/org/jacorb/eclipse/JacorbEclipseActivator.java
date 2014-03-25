@@ -31,7 +31,7 @@ public class JacorbEclipseActivator extends Plugin {
 	public void start(BundleContext bundleContext) throws Exception {
 		super.start(bundleContext);
 		JacorbEclipseActivator.instance = this;
-
+		init();
 	}
 
 	public static JacorbEclipseActivator getDefault() {
