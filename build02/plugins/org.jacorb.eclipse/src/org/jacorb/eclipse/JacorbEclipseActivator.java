@@ -8,11 +8,9 @@ import java.util.logging.LogManager;
 
 import org.apache.commons.io.IOUtils;
 import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
 public class JacorbEclipseActivator extends Plugin {
@@ -66,9 +64,10 @@ public class JacorbEclipseActivator extends Plugin {
 			IOUtils.closeQuietly(stream);
 		} catch (IOException e) {
 			propUrl = FileLocator.find(context.getBundle(), new Path("jacorb.properties"), null);
-			getLog().log(
-				new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID, "Failed to find configure/jacorb.config.dir, using default configuration: "
-					+ propUrl, e));
+			// TODO Log this to the trace logger
+//			getLog().log(
+//				new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID, "Failed to find configure/jacorb.config.dir, using default configuration: "
+//					+ propUrl, e));
 		} finally {
 			if (propUrl != null) {
 				URL fileUrl;
@@ -78,14 +77,16 @@ public class JacorbEclipseActivator extends Plugin {
 					File file = new File(fileName);
 					System.setProperty("jacorb.config.dir", file.getParentFile().getAbsolutePath());
 				} catch (IOException e) {
-					getLog().log(
-						new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
-							"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", e));
+					// TODO Log this to the trace logger
+//					getLog().log(
+//						new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
+//							"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", e));
 				}
 			} else {
-				getLog().log(
-					new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
-						"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", null));
+				// TODO Log this to the trace logger
+//				getLog().log(
+//					new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
+//						"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", null));
 			}
 		}
 	}
