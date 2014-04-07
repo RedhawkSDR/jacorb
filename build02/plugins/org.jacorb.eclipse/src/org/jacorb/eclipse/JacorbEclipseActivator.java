@@ -3,10 +3,10 @@ package org.jacorb.eclipse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.LogManager;
 
+import org.apache.commons.io.IOUtils;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
@@ -61,6 +61,9 @@ public class JacorbEclipseActivator extends Plugin {
 		}
 		try {
 			propUrl = Platform.getConfigurationLocation().getDataArea("jacorb.properties");
+			// Test if the file exists
+			InputStream stream = propUrl.openStream();
+			IOUtils.closeQuietly(stream);
 		} catch (IOException e) {
 			propUrl = FileLocator.find(context.getBundle(), new Path("jacorb.properties"), null);
 			getLog().log(
