@@ -5,6 +5,13 @@
   <prerequisites>
     <maven>3.0</maven>
   </prerequisites>
+  
+  <parent>
+    <relativePath>parent/</relativePath>
+    <groupId>gov.redhawk.development.configuration</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
 
   <groupId>gov.redhawk.jacorb</groupId>
   <artifactId>releng</artifactId>
@@ -45,6 +52,7 @@
   <modules>
     <module>../features/org.jacorb.feature</module>
     <module>../plugins/org.jacorb.eclipse</module>
+    <module>../tests/org.jacorb.eclipse.tests</module>
     <module>p2</module>
   </modules>
 
