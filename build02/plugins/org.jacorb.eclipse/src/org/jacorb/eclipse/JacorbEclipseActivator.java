@@ -65,28 +65,25 @@ public class JacorbEclipseActivator extends Plugin {
 		} catch (IOException e) {
 			propUrl = FileLocator.find(context.getBundle(), new Path("jacorb.properties"), null);
 			// TODO Log this to the trace logger
-//			getLog().log(
-//				new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID, "Failed to find configure/jacorb.config.dir, using default configuration: "
-//					+ propUrl, e));
 		} finally {
 			if (propUrl != null) {
 				URL fileUrl;
 				try {
-					fileUrl = FileLocator.toFileURL(propUrl);
+					if ("file".equals(propUrl.getProtocol())) {
+						fileUrl = propUrl;
+					} else {
+						fileUrl = FileLocator.toFileURL(propUrl);
+					}
 					String fileName = fileUrl.getFile();
 					File file = new File(fileName);
 					System.setProperty("jacorb.config.dir", file.getParentFile().getAbsolutePath());
 				} catch (IOException e) {
 					// TODO Log this to the trace logger
-//					getLog().log(
-//						new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
-//							"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", e));
+					e.printStackTrace();
 				}
 			} else {
 				// TODO Log this to the trace logger
-//				getLog().log(
-//					new Status(IStatus.WARNING, JacorbEclipseActivator.PLUGIN_ID,
-//						"Failed to configure jacorb.config.dir location.  CORBA operations may not work.", null));
+			
 			}
 		}
 	}
@@ -126,9 +123,11 @@ public class JacorbEclipseActivator extends Plugin {
 					logInputStream = javaloggerURL.openStream();
 					LogManager.getLogManager().readConfiguration(logInputStream);
 				} catch (IOException e2) {
-					// PASS
+					// TODO Log this to the trace logger
+					e.printStackTrace();
 				} catch (SecurityException e2) {
-					// PASS
+					// TODO Log this to the trace logger
+					e.printStackTrace();
 				}
 			}
 		} finally {
