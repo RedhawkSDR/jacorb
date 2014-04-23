@@ -52,7 +52,6 @@
   <modules>
     <module>../features/org.jacorb.feature</module>
     <module>../plugins/org.jacorb.eclipse</module>
-    <module>../tests/org.jacorb.eclipse.tests</module>
     <module>p2</module>
   </modules>
 

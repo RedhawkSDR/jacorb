@@ -30,7 +30,7 @@
           <instructions>
             <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
             <_exportcontents>
-              !org.slf4j.*,org.*;version="${jacorb-version}.0"
+              org.omg.*,org.jacorb.*;version="${jacorb-version}.0"
             </_exportcontents>
             <Import-Package></Import-Package>
             <Eclipse-BundleShape>dir</Eclipse-BundleShape> 
@@ -50,7 +50,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Fragment-Host>system.bundle</Fragment-Host>
+              <Fragment-Host>system.bundle; extension:=framework</Fragment-Host>
             </manifestEntries>
           </archive>
         </configuration>
