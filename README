@@ -1,8 +1,0 @@
-This repository wraps the Jacorb libraries as OSGi bundles.
-
-It uses the pom first startegy.
-http://wiki.eclipse.org/Tycho/How_Tos/Dependency_on_pom-first_artifacts
-
-To build:
-cd build01; mvn clean install
-cd build02/releng; mvn clean install

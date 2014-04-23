@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Platform Configure
+Bundle-SymbolicName: org.jacorb.eclipse
+Bundle-Version: 1.1.0.qualifier
+Bundle-Activator: org.jacorb.eclipse.JacorbEclipseActivator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.apache.commons.io;bundle-version="2.0.1",
+ org.jacorb;bundle-version="3.3.0";visibility:=reexport
+Export-Package: org.jacorb.eclipse

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jacorb.services
+Bundle-SymbolicName: org.jacorb.services
+Bundle-Version: 3.3.0.qualifier
+Built-By: efe
+Embed-Transitive: true
+Embed-Dependency: jacorb-services
+Build-Jdk: 1.7.0_55
+Created-By: Apache Maven Bundle Plugin
+Ignore-Package: org.picocontainer,antlr.collections.impl,antlr.collections,antlr,org.picocontainer.defaults,org.tanukisoftware.wrapper
+Embed-Directory: jars
+Eclipse-BundleShape: dir
+Bnd-LastModified: 1398216924291
+Tool: Bnd-0.0.357
+Require-Bundle: org.jacorb;bundle-version="3.3.0";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
