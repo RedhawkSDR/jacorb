@@ -2,13 +2,13 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="lib" path="jars/jacorb-services.jar"/>
-	<classpathentry exported="true" kind="lib" path="jars/jacorb.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/jacorb-services.jar" sourcepath="jars/jacorb-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/jacorb.jar" sourcepath="jars/jacorb-sources.jar" />
 	<classpathentry exported="true" kind="lib" path="jars/picocontainer-1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="jars/slf4j-api-1.6.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="jars/slf4j-jdk14-1.6.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="jars/antlr-2.7.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="jars/idl.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/idl.jar" sourcepath="jars/jacorb-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="jars/jacorb-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="jars/wrapper-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>

@@ -74,6 +74,7 @@ public class JacorbActivator extends Plugin {
 			boolean shouldConfigure = false;
 			Exception configureException = null;
 			String jacorbLine = "-Djava.endorsed.dirs=<Eclipse Dir>/plugins/org.jacor/lib";
+			File iniFile = new File("eclipse.ini");
 			if (installLocation != null) {
 				URL homeUrl = installLocation.getURL();
 				File homeFile = new File(homeUrl.getPath());
@@ -88,7 +89,7 @@ public class JacorbActivator extends Plugin {
 
 					if (jacorbDir != null && jacorbDir.exists()) {
 						jacorbLine = "-Djava.endorsed.dirs=" + jacorbDir.getAbsolutePath();
-						File iniFile = new File(homeFile, "eclipse.ini");
+						iniFile = new File(homeFile, "eclipse.ini");
 						if (!iniFile.exists()) {
 							File[] files = homeFile.listFiles(new FilenameFilter() {
 
@@ -149,13 +150,7 @@ public class JacorbActivator extends Plugin {
 
 			if (shouldConfigure) {
 				if (!autoConfigured) {
-					String msg = "Please add the following to your eclipse.ini:\n\t" + jacorbLine;
-//					if (Display.getCurrent() != null) {
-//						if (ErrorDialog.openError(Display.getCurrent().getActiveShell(), "Jacorb Configuration", msg, new Status(Status.ERROR, PLUGIN_ID,
-//							"Unable to automatically update Eclipse.ini Jacorb Configuration.", configureException)) == Dialog.OK) {
-//							System.exit(0);
-//						}
-//					}
+					String msg = "Please add the following to " + iniFile + ":\n\t" + jacorbLine;
 
 					System.err.println(msg);
 					if (configureException != null) {
@@ -164,18 +159,13 @@ public class JacorbActivator extends Plugin {
 					System.exit(-1);
 
 				} else {
-					System.err.println("Eclipse.ini Jacorb configuration automatically updated. You must restart the application for these new settings to take effect.");
+					System.err.println( iniFile + " Jacorb configuration has been automatically updated. "
+						+ "\n\nYou MUST restart the application for these new settings to take effect.");
 					System.exit(IApplication.EXIT_OK);
 				}
 			} else {
 				String msg = "Please add the following to your vm args:\n\t" + jacorbLine;
 				System.err.println(msg);
-//				if (Display.getCurrent() != null) {
-//					if (ErrorDialog.openError(Display.getCurrent().getActiveShell(), "Jacorb Configuration", msg, new Status(Status.ERROR, PLUGIN_ID,
-//						"Unable to instantiate Jacorb ORB.", exception)) == Dialog.OK) {
-//						
-//					};
-//				}
 				System.exit(-1);
 			}
 		}
@@ -263,7 +253,16 @@ public class JacorbActivator extends Plugin {
 		if (currentProperty != null) {
 			File propFile = new File(currentProperty);
 			if (propFile.exists()) {
-				return;
+				try {
+					LogManager.getLogManager().readConfiguration();
+					return;
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 
