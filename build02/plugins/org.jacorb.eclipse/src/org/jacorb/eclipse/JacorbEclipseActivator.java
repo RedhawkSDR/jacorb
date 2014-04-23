@@ -48,19 +48,23 @@ public class JacorbEclipseActivator extends Plugin {
 		}
 		postInit = true;
 		String version = System.getProperty("java.version");
-		if (version.startsWith("1.7.0_")) {
-			int minorVersion = Integer.parseInt(version.substring(6));
-			if (minorVersion < 55) {
-				return;
+		try {
+			if (version.startsWith("1.7.0_")) {
+				int minorVersion = Integer.parseInt(version.substring(6));
+				if (minorVersion < 55) {
+					return;
+				}
+			} else if (version.startsWith("1.8.0_")) {
+				// PASS
+				// Always do this for 1.8
+			} else if (version.startsWith("1.6.0_")) {
+				int minorVersion = Integer.parseInt(version.substring(6));
+				if (minorVersion < 30) {
+					return;
+				}
 			}
-		} else if (version.startsWith("1.8.0_")) {
+		} catch (NumberFormatException e) {
 			// PASS
-			// Always do this for 1.8
-		} else if (version.startsWith("1.6.0_")) {
-			int minorVersion = Integer.parseInt(version.substring(6));
-			if (minorVersion < 30) {
-				return;
-			}
 		}
 		try {
 			ORB.init();
@@ -81,7 +85,7 @@ public class JacorbEclipseActivator extends Plugin {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 					if (jacorbDir != null && jacorbDir.exists()) {
 						jacorbLine = "-Djava.endorsed.dirs=" + jacorbDir.getAbsolutePath();
 						File iniFile = new File(homeFile, "eclipse.ini");
@@ -143,7 +147,6 @@ public class JacorbEclipseActivator extends Plugin {
 				}
 			}
 
-			
 			if (shouldConfigure) {
 				if (!autoConfigured) {
 					String msg = "Please add the following to your eclipse.ini:\n\t" + jacorbLine;
@@ -153,13 +156,13 @@ public class JacorbEclipseActivator extends Plugin {
 //							System.exit(0);
 //						}
 //					}
-					
+
 					System.err.println(msg);
 					if (configureException != null) {
 						configureException.printStackTrace();
 					}
 					System.exit(-1);
-					
+
 				} else {
 					System.err.println("Updated Jacorb configuration. Please restart the application to take affect.");
 					System.exit(IApplication.EXIT_OK);
