@@ -29,7 +29,7 @@
     <module>../features/org.jacorb.feature</module>
     <module>../plugins/org.jacorb.eclipse</module>
     <module>../plugins/org.jacorb</module>
-    <module>../plugins/org.jacorb.idl</module>
+    <module>../plugins/org.jacorb.idl.compiler</module>
     <module>../plugins/org.jacorb.services</module>
     <module>../plugins/org.jacorb.systemFragment</module>
     <module>p2</module>

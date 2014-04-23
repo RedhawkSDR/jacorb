@@ -9,7 +9,7 @@
   </parent>
 
 
-  <artifactId>org.jacorb.idl</artifactId>
+  <artifactId>org.jacorb.idl.compiler</artifactId>
   <name>Jacorb IDL Plugin</name>
   <groupId>org.jacorb.plugins</groupId>
   <version>3.3.0-SNAPSHOT</version>
