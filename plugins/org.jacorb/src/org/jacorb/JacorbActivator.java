@@ -73,7 +73,7 @@ public class JacorbActivator extends Plugin {
 			boolean autoConfigured = false;
 			boolean shouldConfigure = false;
 			Exception configureException = null;
-			String jacorbLine = "-Djava.endorsed.dirs=<Eclipse Dir>/plugins/org.jacor/lib";
+			String jacorbLine = "-Djava.endorsed.dirs=<Eclipse Dir>/plugins/org.jacorb/lib";
 			File iniFile = new File("eclipse.ini");
 			if (installLocation != null) {
 				URL homeUrl = installLocation.getURL();
