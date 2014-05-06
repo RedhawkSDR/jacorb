@@ -73,6 +73,7 @@ public class JacorbActivator extends Plugin {
 			boolean autoConfigured = false;
 			boolean shouldConfigure = false;
 			Exception configureException = null;
+			
 			String jacorbLine = "-Djava.endorsed.dirs=<Eclipse Dir>/plugins/org.jacorb/lib";
 			File iniFile = new File("eclipse.ini");
 			if (installLocation != null) {
@@ -95,6 +96,9 @@ public class JacorbActivator extends Plugin {
 
 								@Override
 								public boolean accept(File dir, String name) {
+									if ("launch.ini".equals(name)) {
+										return false;
+									}
 									return name.endsWith(".ini");
 								}
 							});
@@ -151,25 +155,27 @@ public class JacorbActivator extends Plugin {
 			if (shouldConfigure) {
 				if (!autoConfigured) {
 					String msg = "Please add the following to " + iniFile + ":\n\t" + jacorbLine;
-
-					System.err.println(msg);
-					if (configureException != null) {
-						configureException.printStackTrace();
-					}
-					System.exit(-1);
-
+					shutdown(-1, msg, configureException);
 				} else {
-					System.err.println( iniFile + " Jacorb configuration has been automatically updated. "
-						+ "\n\nYou MUST restart the application for these new settings to take effect.");
-					System.exit(IApplication.EXIT_OK);
+					String msg = iniFile + " Jacorb configuration has been automatically updated. "
+						+ "\n\nYou MUST restart the application for these new settings to take effect.";
+					shutdown(IApplication.EXIT_OK, msg, null);
 				}
 			} else {
 				String msg = "Please add the following to your vm args:\n\t" + jacorbLine;
-				System.err.println(msg);
-				System.exit(-1);
+				shutdown(-1, msg, null);
 			}
 		}
 
+	}
+	
+	private void shutdown(int errorCode, String msg, Throwable exception) {
+		System.err.println(msg);
+		if (exception != null) {
+			exception.printStackTrace();
+		}
+		Platform.endSplash();
+		System.exit(errorCode);
 	}
 
 	public static JacorbActivator getDefault() {

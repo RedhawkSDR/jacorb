@@ -6,13 +6,6 @@ Bundle-Version: 3.3.0.qualifier
 Eclipse-BundleShape: dir
 Bundle-ClassPath: lib/jacorb-services.jar,
  lib/jacorb.jar,
- lib/picocontainer-1.2.jar,
- lib/slf4j-api-1.6.4.jar,
- lib/slf4j-jdk14-1.6.4.jar,
- lib/antlr-2.7.2.jar,
- lib/idl.jar,
- lib/jacorb-sources.jar,
- lib/wrapper-3.1.0.jar,
  lib/eclipse.jar
 Export-Package: org.jacorb;version="3.3.0",
  org.jacorb.collection;version="3.3.0",
@@ -21,9 +14,6 @@ Export-Package: org.jacorb;version="3.3.0",
  org.jacorb.config;version="3.3.0",
  org.jacorb.dds;version="3.3.0",
  org.jacorb.events;version="3.3.0",
- org.jacorb.idl.javamapping;version="3.3.0",
- org.jacorb.idl.runtime;version="3.3.0",
- org.jacorb.idl.util;version="3.3.0",
  org.jacorb.imr;version="3.3.0",
  org.jacorb.imr.AdminPackage;version="3.3.0",
  org.jacorb.imr.RegistrationPackage;version="3.3.0",
@@ -174,8 +164,9 @@ Export-Package: org.jacorb;version="3.3.0",
  org.omg.SendingContext.CodeBasePackage;version="3.3.0",
  org.omg.TimeBase;version="3.3.0",
  org.omg.dds;version="3.3.0"
-Require-Bundle: org.eclipse.core.runtime,
- org.apache.commons.io;bundle-version="2.0.1"
+Require-Bundle: org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.jacorb.JacorbActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.apache.commons.io;version="2.0.0",
+ org.slf4j;version="1.6.4"

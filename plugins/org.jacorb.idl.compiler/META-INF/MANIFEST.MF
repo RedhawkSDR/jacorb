@@ -3,14 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jacorb.idl
 Bundle-SymbolicName: org.jacorb.idl.compiler
 Bundle-Version: 3.3.0.qualifier
-Bnd-LastModified: 1398216925399
-Build-Jdk: 1.7.0_55
 Eclipse-BundleShape: dir
-Embed-Dependency: jacorb-idl-compiler
-Created-By: Apache Maven Bundle Plugin
-Built-By: efe
-Embed-Transitive: true
-Tool: Bnd-0.0.357
-Embed-Directory: jars
 Require-Bundle: org.jacorb;bundle-version="3.3.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/idl.jar
+Export-Package: org.jacorb.idl,
+ org.jacorb.idl.javamapping,
+ org.jacorb.idl.runtime,
+ org.jacorb.idl.util
