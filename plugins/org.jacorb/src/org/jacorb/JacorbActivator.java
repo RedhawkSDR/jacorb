@@ -9,6 +9,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Properties;
 import java.util.logging.LogManager;
 
 import org.apache.commons.io.IOUtils;
@@ -245,6 +246,14 @@ public class JacorbActivator extends Plugin {
 		System.setProperty("org.omg.CORBA.ORBClass", "org.jacorb.orb.ORB");
 		System.setProperty("org.omg.CORBA.ORBSingletonClass", "org.jacorb.orb.ORBSingleton");
 		System.setProperty("org.omg.PortableInterceptor.ORBInitializerClass.standard_init", "org.jacorb.orb.standardInterceptors.IORInterceptorInitializer");
+	}
+	
+	public static void setupProperties(Properties properties) {
+		properties.setProperty("com.sun.CORBA.transport.ORBUseNIOSelectToWait", "false");
+		properties.setProperty("java.net.preferIPv4Stack", "true");
+		properties.setProperty("org.omg.CORBA.ORBClass", "org.jacorb.orb.ORB");
+		properties.setProperty("org.omg.CORBA.ORBSingletonClass", "org.jacorb.orb.ORBSingleton");
+		properties.setProperty("org.omg.PortableInterceptor.ORBInitializerClass.standard_init", "org.jacorb.orb.standardInterceptors.IORInterceptorInitializer");
 	}
 
 	/**
