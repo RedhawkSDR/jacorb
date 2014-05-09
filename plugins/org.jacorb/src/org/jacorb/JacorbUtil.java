@@ -30,14 +30,12 @@ public final class JacorbUtil {
 	}
 
 	private static final String CORBA_NAMESPACE = "org.omg.CORBA.";
-
-	static {
-		JacorbActivator.getDefault().init();
-	}
+	
 	/**
 	 * @since 3.1
 	 */
 	public static ORB init(final String[] args, final Properties properties) {
+		JacorbActivator.getDefault().init();
 		if (properties != null) {
 			Map<Object, Object> newElements = new HashMap<Object, Object>();
 			for (Entry<Object, Object> entry : properties.entrySet()) {

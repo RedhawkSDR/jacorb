@@ -14,13 +14,16 @@ import java.util.logging.LogManager;
 
 import org.apache.commons.io.IOUtils;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.osgi.service.datalocation.Location;
 import org.omg.CORBA.ORB;
 import org.osgi.framework.BundleContext;
+import javax.swing.JOptionPane;
 
 public class JacorbActivator extends Plugin {
 
@@ -73,7 +76,7 @@ public class JacorbActivator extends Plugin {
 			Location installLocation = Platform.getInstallLocation();
 			boolean autoConfigured = false;
 			boolean shouldConfigure = false;
-			Exception configureException = null;
+			IStatus configureStatus = Status.OK_STATUS;
 			
 			String jacorbLine = "-Djava.endorsed.dirs=<Eclipse Dir>/plugins/org.jacorb/lib";
 			File iniFile = new File("eclipse.ini");
@@ -139,7 +142,7 @@ public class JacorbActivator extends Plugin {
 								writer.flush();
 								autoConfigured = true;
 							} catch (IOException e) {
-								configureException = e;
+								configureStatus = new Status(Status.ERROR, PLUGIN_ID, "Failed to auto configure " + iniFile, e);
 							} finally {
 								if (reader != null) {
 									IOUtils.closeQuietly(reader);
@@ -156,24 +159,31 @@ public class JacorbActivator extends Plugin {
 			if (shouldConfigure) {
 				if (!autoConfigured) {
 					String msg = "Please add the following to " + iniFile + ":\n\t" + jacorbLine;
-					shutdown(-1, msg, configureException);
+					shutdown(-1, msg, configureStatus);
 				} else {
-					String msg = iniFile + " Jacorb configuration has been automatically updated. "
+					String msg = "REDHAWK initial setup has completed. "
 						+ "\n\nYou MUST restart the application for these new settings to take effect.";
 					shutdown(IApplication.EXIT_OK, msg, null);
 				}
 			} else {
 				String msg = "Please add the following to your vm args:\n\t" + jacorbLine;
-				shutdown(-1, msg, null);
+				shutdown(-1, msg, new Status(Status.ERROR, PLUGIN_ID, "Failed to find configuration file.", null));
 			}
 		}
 
 	}
 	
-	private void shutdown(int errorCode, String msg, Throwable exception) {
-		System.err.println(msg);
-		if (exception != null) {
-			exception.printStackTrace();
+	private void shutdown(int errorCode, String msg, IStatus status) {
+		if (status == null || status.isOK()) {
+			JOptionPane.showMessageDialog(null, msg, "Setup", JOptionPane.INFORMATION_MESSAGE);
+			System.out.println(msg);
+		} else {
+			JOptionPane.showMessageDialog(null, msg, "Configuration Error", JOptionPane.ERROR_MESSAGE);
+			System.err.println(msg);
+		}
+		
+		if (status != null && !status.isOK() && status.getException() != null) {
+			status.getException().printStackTrace();
 		}
 		Platform.endSplash();
 		System.exit(errorCode);
