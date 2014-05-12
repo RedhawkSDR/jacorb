@@ -31,6 +31,24 @@ public final class JacorbUtil {
 
 	private static final String CORBA_NAMESPACE = "org.omg.CORBA.";
 	
+	public static ORB init() {
+		JacorbActivator.getDefault().init();
+		final ORB [] retVal = new ORB[1];
+		SafeRunner.run(new ISafeRunnable() {
+			
+			@Override
+			public void run() throws Exception {
+				retVal[0] = org.jacorb.orb.ORB.init();
+			}
+			
+			@Override
+			public void handleException(Throwable exception) {
+				
+			}
+		});
+		return retVal[0];
+	}
+	
 	/**
 	 * @since 3.1
 	 */
