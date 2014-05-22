@@ -1,4 +1,11 @@
 <configuration>
-  <root level="WARN">
-  </root>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %class - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<root>
+		<level value="error" />
+		<appender-ref ref="STDOUT" />
+	</root>
 </configuration>

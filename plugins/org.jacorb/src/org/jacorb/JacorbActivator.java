@@ -228,6 +228,9 @@ public class JacorbActivator extends Plugin {
 	}
 
 	private void configureLogback(BundleContext bundleContext) {
+		if (System.getProperty("logback.configurationFile") != null) {
+			return;
+		}
 		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
 
 		try {
