@@ -26,10 +26,7 @@
               <goal>source-feature</goal>
             </goals>
             <configuration>
-              <excludes>
-                <plugin id="org.jacorb.idl.compiler"/>
-                <plugin id="org.jacorb.services"/>
-              </excludes>
+              <skip>true</skip>
             </configuration>
           </execution>
         </executions>

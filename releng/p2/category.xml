@@ -3,5 +3,8 @@
    <feature url="features/org.jacorb_3.3.0.qualifier.jar" id="org.jacorb" version="3.3.0.qualifier">
       <category name="org.jacorb"/>
    </feature>
+   <feature url="features/org.jacorb.source_3.3.0.qualifier.jar" id="org.jacorb.source" version="3.3.0.qualifier">
+      <category name="org.jacorb"/>
+   </feature>
    <category-def name="org.jacorb" label="JacORB"/>
 </site>
