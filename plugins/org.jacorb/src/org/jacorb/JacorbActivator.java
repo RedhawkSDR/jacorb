@@ -1,3 +1,14 @@
+/** 
+ * This file is protected by Copyright. 
+ * Please refer to the COPYRIGHT file distributed with this source distribution.
+ * 
+ * This file is part of REDHAWK IDE.
+ * 
+ * All rights reserved.  This program and the accompanying materials are made available under 
+ * the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html.
+ *
+ */
 package org.jacorb;
 
 import java.io.BufferedReader;
@@ -73,7 +84,7 @@ public class JacorbActivator extends Plugin {
 			initViaReflection();
 			return;
 		} catch (Throwable e) {
-			e.printStackTrace();
+			e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 			exception = e;
 		}
 
@@ -112,8 +123,7 @@ public class JacorbActivator extends Plugin {
 				try {
 					jacorbDir = new File(FileLocator.toFileURL(FileLocator.find(Platform.getBundle("org.jacorb"), new Path("lib"), null)).getPath());
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e1.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 				}
 
 				if (jacorbDir != null && jacorbDir.exists()) {
@@ -145,7 +155,7 @@ public class JacorbActivator extends Plugin {
 							for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 								if (line.trim().startsWith("-Djava.endorsed.dirs")) {
 									if (jacorbLine.equals(line)) {
-										exception.printStackTrace();
+										exception.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 										System.exit(-1);
 									}
 									buffer.append(jacorbLine);
@@ -198,14 +208,14 @@ public class JacorbActivator extends Plugin {
 	private void shutdown(int errorCode, String msg, IStatus status) {
 		if (status == null || status.isOK()) {
 			JOptionPane.showMessageDialog(null, msg, "Setup", JOptionPane.INFORMATION_MESSAGE);
-			System.out.println(msg);
+			System.out.println(msg); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 		} else {
 			JOptionPane.showMessageDialog(null, msg, "Configuration Error", JOptionPane.ERROR_MESSAGE);
-			System.err.println(msg);
+			System.err.println(msg); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 		}
 
 		if (status != null && !status.isOK() && status.getException() != null) {
-			status.getException().printStackTrace();
+			status.getException().printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 		}
 		Platform.endSplash();
 		System.exit(errorCode);
@@ -252,10 +262,10 @@ public class JacorbActivator extends Plugin {
 				stream.close();
 			}
 		} catch (JoranException je) {
+			// PASS
 			// StatusPrinter will handle this
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 		}
 		StatusPrinter.printInCaseOfErrorsOrWarnings(context);
 	}
@@ -282,8 +292,7 @@ public class JacorbActivator extends Plugin {
 			try {
 				propUrl = FileLocator.toFileURL(FileLocator.find(context.getBundle(), new Path("etc/jacorb.properties"), null));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e1.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 			}
 		} finally {
 			if (propUrl != null) {
@@ -292,6 +301,7 @@ public class JacorbActivator extends Plugin {
 				this.jacorbConfigDir = file.getParentFile().getAbsolutePath();
 				System.setProperty("jacorb.config.dir", file.getParentFile().getAbsolutePath());
 			} else {
+				// PASS
 				// TODO Log this to the trace logger
 
 			}
@@ -350,11 +360,9 @@ public class JacorbActivator extends Plugin {
 					LogManager.getLogManager().readConfiguration();
 					return;
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 				}
 			}
 		}
@@ -371,11 +379,9 @@ public class JacorbActivator extends Plugin {
 					logInputStream = javaloggerURL.openStream();
 					LogManager.getLogManager().readConfiguration(logInputStream);
 				} catch (IOException e2) {
-					// TODO Log this to the trace logger
-					e.printStackTrace();
+					e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 				} catch (SecurityException e2) {
-					// TODO Log this to the trace logger
-					e.printStackTrace();
+					e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 				}
 			}
 		} finally {
