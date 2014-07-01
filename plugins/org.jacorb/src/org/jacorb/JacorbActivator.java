@@ -37,6 +37,7 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.osgi.service.datalocation.Location;
 import org.omg.CORBA.ORB;
 import org.osgi.framework.BundleContext;
+import org.slf4j.ILoggerFactory;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.LoggerContext;
@@ -105,7 +106,6 @@ public class JacorbActivator extends Plugin {
 			}
 		}
 	}
-
 
 	private void autoConfigure(Throwable exception) {
 		Location installLocation = Platform.getInstallLocation();
@@ -204,7 +204,6 @@ public class JacorbActivator extends Plugin {
 		}
 	}
 
-
 	private void shutdown(int errorCode, String msg, IStatus status) {
 		if (status == null || status.isOK()) {
 			JOptionPane.showMessageDialog(null, msg, "Setup", JOptionPane.INFORMATION_MESSAGE);
@@ -241,33 +240,36 @@ public class JacorbActivator extends Plugin {
 		if (System.getProperty("logback.configurationFile") != null) {
 			return;
 		}
-		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+		ILoggerFactory factory = LoggerFactory.getILoggerFactory();
+		if (factory instanceof LoggerContext) {
+			LoggerContext context = (LoggerContext) factory;
 
-		try {
-			JoranConfigurator configurator = new JoranConfigurator();
-			configurator.setContext(context);
-			// Call context.reset() to clear any previous configuration, e.g. default
-			// configuration. For multi-step configuration, omit calling context.reset().
-			context.reset();
-			InputStream stream;
 			try {
-				URL logbackUrl = Platform.getConfigurationLocation().getDataArea("logback.xml");
-				stream = logbackUrl.openStream();
-			} catch (Exception e) {
-				stream = FileLocator.find(bundleContext.getBundle(), new Path("etc/logback.xml"), null).openStream();
+				JoranConfigurator configurator = new JoranConfigurator();
+				configurator.setContext(context);
+				// Call context.reset() to clear any previous configuration, e.g. default
+				// configuration. For multi-step configuration, omit calling context.reset().
+				context.reset();
+				InputStream stream;
+				try {
+					URL logbackUrl = Platform.getConfigurationLocation().getDataArea("logback.xml");
+					stream = logbackUrl.openStream();
+				} catch (Exception e) {
+					stream = FileLocator.find(bundleContext.getBundle(), new Path("etc/logback.xml"), null).openStream();
+				}
+				try {
+					configurator.doConfigure(stream);
+				} finally {
+					stream.close();
+				}
+			} catch (JoranException je) {
+				// PASS
+				// StatusPrinter will handle this
+			} catch (IOException e) {
+				e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
 			}
-			try {
-				configurator.doConfigure(stream);
-			} finally {
-				stream.close();
-			}
-		} catch (JoranException je) {
-			// PASS
-			// StatusPrinter will handle this
-		} catch (IOException e) {
-			e.printStackTrace(); // SUPPRESS CHECKSTYLE SHUTDOWN MESSAGE
+			StatusPrinter.printInCaseOfErrorsOrWarnings(context);
 		}
-		StatusPrinter.printInCaseOfErrorsOrWarnings(context);
 	}
 
 	private void configureJacorb(BundleContext context) {
@@ -310,7 +312,7 @@ public class JacorbActivator extends Plugin {
 			jacorbHome = FileLocator.toFileURL(FileLocator.find(context.getBundle(), new Path(""), null)).getPath();
 		} catch (IOException e) {
 			// PASS
-		} 
+		}
 		setProperties(context);
 	}
 
