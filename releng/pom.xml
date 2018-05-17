@@ -29,7 +29,7 @@
 
   <properties>
     <tycho.scmUrl>scm:git:https://github.com/RedhawkSDR/eclipse-jacorb.git</tycho.scmUrl>
-    <eclipse>http://download.eclipse.org/releases/juno</eclipse>
+    <eclipse>http://download.eclipse.org/releases/mars</eclipse>
   </properties>
 
   <modules>
